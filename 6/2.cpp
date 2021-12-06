@@ -60,6 +60,8 @@ int solve(bool sample = true, int DAYS = 0) {
 }
 
 int32_t main() {
+	cout << "Days = " << 256 << '\n';
 	cout << "Sample answer = " << solve(true, 256) << '\n';
 	cout << "Testcase answer = " << solve(false, 256) << '\n';
+	// Answer = 1702631502303
 }
