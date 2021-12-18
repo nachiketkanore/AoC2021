@@ -29,9 +29,8 @@ template<class T> bool cmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 const int N = 5005;
 char mat[N][N];
 
-int32_t main() {
-
-    freopen("in", "r", stdin);
+void solve(string file) {
+    freopen(file.c_str(), "r", stdin);
 
     F0R (i,N) F0R (j,N) mat[i][j] = '.';
     while (true) {
@@ -53,8 +52,8 @@ int32_t main() {
     }
 
     auto print = [&]() {
-        F0R (i,15) {
-            F0R (j,11) {
+        F0R (i,20) {
+            F0R (j,150) {
                 cout << mat[i][j];
             }
             cout << '\n';
@@ -63,6 +62,7 @@ int32_t main() {
 
     auto fold_left = [&](int col) {
         int col1 = col - 1, col2 = col + 1;
+        F0R (row,N) mat[row][col] = '.';
         while (col1 >= 0 && col2 < N) {
             F0R (row,N) {
                 if (mat[row][col1] == '#' || mat[row][col2] == '#') {
@@ -79,6 +79,7 @@ int32_t main() {
 
     auto fold_up = [&](int row) {
         int row1 = row - 1, row2 = row + 1;
+        F0R (col,N) mat[row][col] = '.';
         while (row1 >= 0 && row2 < N) {
             F0R (col,N) {
                 if (mat[row1][col] == '#' || mat[row2][col] == '#') {
@@ -105,11 +106,19 @@ int32_t main() {
         /* break; */
     }
 
-    /* print(); */
+    print();
 
     int ans = 0;
     F0R (i,N) F0R (j,N) {
-        ans += mat[i][j] == '#';
+        ans += mat[i][j] == '.';
     }
+    cout << '\n' << file << '\n';
     cout << ans << '\n';
+    fclose(stdin);
+}
+
+int32_t main() {
+    /* solve("sample"); */
+    solve("in");
+    // Answer = RCPLAKHL
 }
